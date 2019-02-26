@@ -20,50 +20,42 @@ import com.footballworld.entities.Managers;
 import com.footballworld.service.ManagerService;
 
 @RestController
-@RequestMapping(value="/managers")
+@RequestMapping(value = "/managers")
 public class ManagerController {
-	
-	private static  Logger logger= LoggerFactory.getLogger(ManagerController.class);
-	
-	
-	
-	
+
+	private static Logger logger = LoggerFactory.getLogger(ManagerController.class);
+
 	private ManagerService managerService;
-	
-	@Autowired(required=true)
-	@Qualifier(value="managerService")
-	public void setPersonService(ManagerService ms){
+
+	@Autowired(required = true)
+	@Qualifier(value = "managerService")
+	public void setPersonService(ManagerService ms) {
 		this.managerService = ms;
 	}
-	
-	@RequestMapping(value="/add", method=RequestMethod.POST )
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public void addManager(@RequestBody Managers m) {
-		
-		
-		logger.info("Inside add manager call-->"+m.getManagerId());
-		
-			logger.info("Inside add manager method-->"+m);
-			this.managerService.addManager(m);
-	
-		
-		
-		
+
+		logger.info("Inside add manager call-->" + m.getManagerId());
+
+		logger.info("Inside add manager method-->" + m);
+		this.managerService.addManager(m);
+
 	}
-	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET,  produces="application/JSON")
-    public Managers getManagerById(@PathVariable("id") int id){
-		
-        Managers m = (Managers) this.managerService.getManagerById(id);
-        return m;
-        //return "redirect:/managers";
-    }
-	
-	@RequestMapping(value="/managerlist", method= RequestMethod.GET, produces="application/JSON")
-	public @ResponseBody List<Managers> getAllManagers(){
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/JSON")
+	public Managers getManagerById(@PathVariable("id") int id) {
+
+		Managers m = (Managers) this.managerService.getManagerById(id);
+		return m;
+		// return "redirect:/managers";
+	}
+
+	@RequestMapping(value = "/managerlist", method = RequestMethod.GET, produces = "application/JSON")
+	public @ResponseBody List<Managers> getAllManagers() {
 		logger.info("Retreived list-->");
 		return this.managerService.getAllManagers();
-		
+
 	}
-	
-	
+
 }
