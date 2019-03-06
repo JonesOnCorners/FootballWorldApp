@@ -81,3 +81,8 @@ IS_ADMIN VARCHAR(1),
 CONSTRAINT EMPLOYEES_PK PRIMARY KEY(EMPLOYEE_ID)
 );
 
+CREATE TABLE `Roles` (
+  `username` varchar(20) NOT NULL DEFAULT '',
+  `role` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`username`,`role`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
